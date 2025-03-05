@@ -189,6 +189,14 @@ router.get("/bulk", async(req,res)=>{
     }
 })
 
+router.get("/me", authMiddleware, async(req, res)=>{
+    const me = await User.findOne({_id:req.userId});
+    res.json({
+        username: me.username,
+        firstName: me.firstName,
+        lastName: me.lastName
+    })
+})
 
 
 
